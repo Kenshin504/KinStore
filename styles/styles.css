@@ -754,10 +754,10 @@ body {
 /* Scroll Animation Styles */
 .fade-in-section {
     opacity: 0;
-    transform: translateY(20vh);
+    transform: translateY(10vh);
     visibility: hidden;
-    transition: opacity 600ms ease-out, transform 400ms ease-out,
-        visibility 600ms ease-out;
+    transition: opacity 400ms ease-out, transform 300ms ease-out,
+        visibility 400ms ease-out;
     will-change: opacity, transform, visibility;
 }
 
@@ -770,14 +770,21 @@ body {
 /* Apply fade-in to sections */
 .section, .product-card {
     opacity: 0;
-    transform: translateY(20vh);
+    transform: translateY(10vh);
     visibility: hidden;
-    transition: opacity 600ms ease-out, transform 400ms ease-out,
-        visibility 600ms ease-out;
+    transition: opacity 400ms ease-out, transform 300ms ease-out,
+        visibility 400ms ease-out;
     will-change: opacity, transform, visibility;
 }
 
 .section.is-visible, .product-card.is-visible {
+    opacity: 1;
+    transform: none;
+    visibility: visible;
+}
+
+/* Prevent fade on initial load for first section */
+.section:first-child {
     opacity: 1;
     transform: none;
     visibility: visible;
