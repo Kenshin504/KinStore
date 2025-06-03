@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KinStore</title>
+    <link rel="icon" type="image/png" href="images/icons8-robux-48.png">
+    <link rel="stylesheet" href="styles/styles.css">
+    <script src="script/script.js"></script>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="#" class="nav-brand" data-section="gamepasses">🎮 KinStore</a>
+            <button class="hamburger" onclick="toggleMenu()">
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+            </button>
+            <ul class="nav-menu">
+                <li><a href="GamePasses" class="nav-link active" data-section="gamepasses">Gamepasses</a></li>
+                <li><a href="Robux" class="nav-link" data-section="robux">Robux Packages</a></li>
+                <li><a href="About" class="nav-link" data-section="about">About</a></li>
+            </ul>
+            <button class="theme-toggle" onclick="toggleTheme()">🌙</button>
+        </div>
+    </nav>
+
+    <div class="container">
+        <!-- Gamepasses Section -->
+        <section class="section" id="gamepasses">
+            <div class="section-header">
+                <h1 class="section-title">Gamepasses</h1>
+                <p class="section-subtitle">Unlock exclusive features and boost your gameplay experience</p>
+            </div>
+            
+            <div class="game-category">
+                <h2 class="game-title">
+                    <img src="images/bloxfruit.webp" alt="Blox Fruits" class="game-title-logo">
+                    Blox Fruits - Permanent Fruits
+                </h2>
+                <div class="product-grid">
+                    <!-- Popular Items First -->
+                    <div class="product-card featured">
+                        <div class="featured-badge">Popular</div>
+                        <span class="product-icon icon-buddha"></span>
+                        <h3 class="product-name">Buddha</h3>
+                        <div class="product-price">
+                            <span class="robux-icon"></span>1650
+                        </div>
+                        <div class="peso-price">₱445.00</div>
+                    </div>
+
+                    <div class="product-card featured">
+                        <div class="featured-badge">Popular</div>
+                        <span class="product-icon icon-dragon"></span>
+                        <h3 class="product-name">Dragon</h3>
+                        <div class="product-price">
+                            <span class="robux-icon"></span>5000
+                        </div>
+                        <div class="peso-price">₱1350.00</div>
+                    </div>
+
+                    <div class="product-card featured">
+                        <div class="featured-badge">Popular</div>
+                        <span class="product-icon icon-kitsune"></span>
+                        <h3 class="product-name">Kitsune</h3>
+                        <div class="product-price">
+                            <span class="robux-icon"></span>4000
+                        </div>
+                        <div class="peso-price">₱1080.00</div>
+                    </div>
+
+                    <div class="product-card featured">
+                        <div class="featured-badge">Popular</div>
+                        <span class="product-icon icon-dough"></span>
+                        <h3 class="product-name">Dough</h3>
+                        <div class="product-price">
+                            <span class="robux-icon"></span>300
+                        </div>
+                        <div class="peso-price">₱648.00</div>
+                    </div>
+
+                    <!-- Best Value Items -->
+                    <div class="product-card">
+                        <div class="best-value-badge">Best Value</div>
+                        <span class="product-icon icon-gas"></span>
+                        <h3 class="product-name">Gas</h3>
+                        <div class="product-price">
+                            <span class="robux-icon"></span>2500
+                        </div>
+                        <div class="peso-price">₱675.00</div>
+                    </div>
+
+                    <div class="product-card">
+                        <div class="best-value-badge">Best Value</div>
+                        <span class="product-icon icon-trex"></span>
+                        <h3 class="product-name">T-Rex</h3>
+                        <div class="product-price">
+                            <span class="robux-icon"></span>2350
+                        </div>
+                        <div class="peso-price">₱635.00</div>
+                    </div>
+
+                    <!-- Regular Items -->
+                    <div class="product-card">
+                        <span class="product-icon icon-rocket"></span>
+                        <h3 class="product-name">Rocket</h3>
+                        <div class="product-price">
+                            <span class="robux-icon"></span>50
+                        </div>
+                        <div class="peso-price">₱15.00</div>
+                    </div>
+
+                    <div class="product-card">
+                        <span class="product-icon icon-spin"></span>
+                        <h3 class="product-name">Spin</h3>
+                        <div class="product-price">
+                            <span class="robux-icon"></span>75
+                        </div>
+                        <div class="peso-price">₱20.00</div>
+                    </div>
+
+                    <div class="product-card">
+                        <span class="product-icon icon-blade"></span>
+                        <h3 class="product-name">Blade</h3>
+                        <div class="product-price">
+                            <span class="robux-icon"></span>100
+                        </div>
+                        <div class="peso-price">₱27.00</div>
+                    </div>
+
+                    <div class="product-card">
+                        <span class="product-icon icon-spring"></span>
+                        <h3 class="product-name">Spring</h3>
+                        <div class="product-price">
+                            <span class="robux-icon"></span>180
+                        </div>
+                        <div class="peso-price">₱49.00</div>
+                    </div>
+
+                    <div class="product-card">
+                        <span class="product-icon icon-bomb"></span>
+                        <h3 class="product-name">Bomb</h3>
+                        <div class="product-price">
+                            <span class="robux-icon"></span>220
+                        </div>
+                        <div class="peso-price">₱60.00</div>
+                    </div>
+
+                    <div class="product-card">
+                        <span class="product-icon icon-smoke"></span>
+                        <h3 class="product-name">Smoke</h3>
+                        <div class="product-price">
+                            <span class="robux-icon"></span>250
+                        </div>
+                        <div class="peso-price">₱68.00</div>
+                    </div>
+
+                    <div class="product-card">
+                        <span class="product-icon icon-spike"></span>
+                        <h3 class="product-name">Spike</h3>
+                        <div class="product-price">
+                            <span class="robux-icon"></span>380
+                        </div>
+                        <div class="peso-price">₱103.00</div>
+                    </div>
+
+                    <div class="product-card">
+                        <span class="product-icon icon-flame"></span>
+                        <h3 class="product-name">Flame</h3>
+                        <div class="product-price">
+                            <span class="robux-icon"></span>550
+                        </div>
+                        <div class="peso-price">₱149.00</div>
+                    </div>
+
+                    <div class="product-card">
+                        <span class="product-icon icon-ice"></span>
+                        <h3 class="product-name">Ice</h3>
+                        <div class="product-price">
+                            <span class="robux-icon"></span>750
+                        </div>
+                        <div class="peso-price">₱203.00</div>
+                    </div>
+
+                    <div class="product-card">
+                        <span class="product-icon icon-sand"></span>
+                        <h3 class="product-name">Sand</h3>
+                        <div class="product-price">
+                            <span class="robux-icon"></span>850
+                        </div>
+                        <div class="peso-price">₱230.00</div>
+                    </div>
+
+                    <div class="product-card">
+                        <span class="product-icon icon-dark"></span>
+                        <h3 class="product-name">Dark</h3>
+                        <div class="product-price">
+                            <span class="robux-icon"></span>950
+                        </div>
+                        <div class="peso-price">₱257.00</div>
+                    </div>
+
+                    <div class="product-card">
+                        <span class="product-icon icon-eagle"></span>
+                        <h3 class="product-name">Eagle</h3>
+                        <div class="product-price">
+                            <span class="robux-icon"></span>975
+                        </div>
+                        <div class="peso-price">₱264.00</div>
+                    </div>
+
+                    <div class="product-card">
+                        <span class="product-icon icon-diamond"></span>
+                        <h3 class="product-name">Diamond</h3>
+                        <div class="product-price">
+                            <span class="robux-icon"></span>1000
+                        </div>
+                        <div class="peso-price">₱270.00</div>
+                    </div>
+
+                    <div class="product-card">
+                        <span class="product-icon icon-light"></span>
+                        <h3 class="product-name">Light</h3>
+                        <div class="product-price">
+                            <span class="robux-icon"></span>1100
+                        </div>
+                        <div class="peso-price">₱297.00</div>
+                    </div>
+
+                    <div class="product-card">
+                        <span class="product-icon icon-rubber"></span>
+                        <h3 class="product-name">Rubber</h3>
+                        <div class="product-price">
+                            <span class="robux-icon"></span>1200
+                        </div>
+                        <div class="peso-price">₱324.00</div>
+                    </div>
+
+                    <div class="product-card">
+                        <span class="product-icon icon-ghost"></span>
+                        <h3 class="product-name">Ghost</h3>
+                        <div class="product-price">
+                            <span class="robux-icon"></span>1275
+                        </div>
+                        <div class="peso-price">₱345.00</div>
+                    </div>
+
+                    <div class="product-card">
+                        <span class="product-icon icon-magma"></span>
+                        <h3 class="product-name">Magma</h3>
+                        <div class="product-price">
+                            <span class="robux-icon"></span>1300
+                        </div>
+                        <div class="peso-price">₱351.00</div>
+                    </div>
+
+                    <div class="product-card">
+                        <span class="product-icon icon-quake"></span>
+                        <h3 class="product-name">Quake</h3>
+                        <div class="product-price">
+                            <span class="robux-icon"></span>1500
+                        </div>
+                        <div class="peso-price">₱405.00</div>
+                    </div>
+
+                    <div class="product-card">
+                        <span class="product-icon icon-love"></span>
+                        <h3 class="product-name">Love</h3>
+                        <div class="product-price">
+                            <span class="robux-icon"></span>1700
+                        </div>
+                        <div class="peso-price">₱459.00</div>
+                    </div>
+
+                    <div class="product-card">
+                        <span class="product-icon icon-creation"></span>
+                        <h3 class="product-name">Creation</h3>
+                        <div class="product-price">
+                            <span class="robux-icon"></span>1750
+                        </div>
+                        <div class="peso-price">₱473.00</div>
+                    </div>
+
+                    <div class="product-card">
+                        <span class="product-icon icon-spider"></span>
+                        <h3 class="product-name">Spider</h3>
+                        <div class="product-price">
+                            <span class="robux-icon"></span>1800
+                        </div>
+                        <div class="peso-price">₱486.00</div>
+                    </div>
+
+                    <div class="product-card">
+                        <span class="product-icon icon-sound"></span>
+                        <h3 class="product-name">Sound</h3>
+                        <div class="product-price">
+                            <span class="robux-icon"></span>1900
+                        </div>
+                        <div class="peso-price">₱513.00</div>
+                    </div>
+
+                    <div class="product-card">
+                        <span class="product-icon icon-phoenix"></span>
+                        <h3 class="product-name">Phoenix</h3>
+                        <div class="product-price">
+                            <span class="robux-icon"></span>2000
+                        </div>
+                        <div class="peso-price">₱540.00</div>
+                    </div>
+
+                    <div class="product-card">
+                        <span class="product-icon icon-portal"></span>
+                        <h3 class="product-name">Portal</h3>
+                        <div class="product-price">
+                            <span class="robux-icon"></span>2000
+                        </div>
+                        <div class="peso-price">₱540.00</div>
+                    </div>
+
+                    <div class="product-card">
+                        <span class="product-icon icon-rumble"></span>
+                        <h3 class="product-name">Rumble</h3>
+                        <div class="product-price">
+                            <span class="robux-icon"></span>2100
+                        </div>
+                        <div class="peso-price">₱567.00</div>
+                    </div>
+
+                    <div class="product-card">
+                        <span class="product-icon icon-pain"></span>
+                        <h3 class="product-name">Pain</h3>
+                        <div class="product-price">
+                            <span class="robux-icon"></span>2200
+                        </div>
+                        <div class="peso-price">₱594.00</div>
+                    </div>
+
+                    <div class="product-card">
+                        <span class="product-icon icon-blizzard"></span>
+                        <h3 class="product-name">Blizzard</h3>
+                        <div class="product-price">
+                            <span class="robux-icon"></span>2250
+                        </div>
+                        <div class="peso-price">₱608.00</div>
+                    </div>
+
+                    <div class="product-card">
+                        <span class="product-icon icon-gravity"></span>
+                        <h3 class="product-name">Gravity</h3>
+                        <div class="product-price">
+                            <span class="robux-icon"></span>2300
+                        </div>
+                        <div class="peso-price">₱621.00</div>
+                    </div>
+
+                    <div class="product-card">
+                        <span class="product-icon icon-mammoth"></span>
+                        <h3 class="product-name">Mammoth</h3>
+                        <div class="product-price">
+                            <span class="robux-icon"></span>2350
+                        </div>
+                        <div class="peso-price">₱635.00</div>
+                    </div>
+
+                    <div class="product-card">
+                        <span class="product-icon icon-shadow"></span>
+                        <h3 class="product-name">Shadow</h3>
+                        <div class="product-price">
+                            <span class="robux-icon"></span>2425
+                        </div>
+                        <div class="peso-price">₱655.00</div>
+                    </div>
+
+                    <div class="product-card">
+                        <span class="product-icon icon-venom"></span>
+                        <h3 class="product-name">Venom</h3>
+                        <div class="product-price">
+                            <span class="robux-icon"></span>2450
+                        </div>
+                        <div class="peso-price">₱663.00</div>
+                    </div>
+
+                    <div class="product-card">
+                        <span class="product-icon icon-control"></span>
+                        <h3 class="product-name">Control</h3>
+                        <div class="product-price">
+                            <span class="robux-icon"></span>2500
+                        </div>
+                        <div class="peso-price">₱675.00</div>
+                    </div>
+
+                    <div class="product-card">
+                        <span class="product-icon icon-spirit"></span>
+                        <h3 class="product-name">Spirit</h3>
+                        <div class="product-price">
+                            <span class="robux-icon"></span>2550
+                        </div>
+                        <div class="peso-price">₱689.00</div>
+                    </div>
+
+                    <div class="product-card">
+                        <span class="product-icon icon-leopard"></span>
+                        <h3 class="product-name">Leopard</h3>
+                        <div class="product-price">
+                            <span class="robux-icon"></span>3000
+                        </div>
+                        <div class="peso-price">₱810.00</div>
+                    </div>
+
+                    <div class="product-card">
+                        <span class="product-icon icon-yeti"></span>
+                        <h3 class="product-name">Yeti</h3>
+                        <div class="product-price">
+                            <span class="robux-icon"></span>3000
+                        </div>
+                        <div class="peso-price">₱810.00</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="game-category">
+                <h2 class="game-title">
+                    <img src="images/bloxfruit.webp" alt="Blox Fruits" class="game-title-logo">
+                    Blox Fruits - Gamepasses
+                </h2>
+                <div class="product-grid">
+                    <div class="product-card featured">
+                        <div class="featured-badge">Popular</div>
+                        <span class="product-icon icon-dark-blade"></span>
+                        <h3 class="product-name">Dark Blade</h3>
+                        <div class="product-price">
+                            <span class="robux-icon"></span>1200
+                        </div>
+                        <div class="peso-price">₱324.00</div>
+                    </div>
+
+                    <div class="product-card">
+                        <span class="product-icon icon-fast-boat"></span>
+                        <h3 class="product-name">Fast Boat</h3>
+                        <div class="product-price">
+                            <span class="robux-icon"></span>350
+                        </div>
+                        <div class="peso-price">₱95.00</div>
+                    </div>
+
+                    <div class="product-card">
+                        <span class="product-icon icon-drop"></span>
+                        <h3 class="product-name">2x Drop</h3>
+                        <div class="product-price">
+                            <span class="robux-icon"></span>350
+                        </div>
+                        <div class="peso-price">₱95.00</div>
+                    </div>
+
+                    <div class="product-card">
+                        <span class="product-icon icon-mastery"></span>
+                        <h3 class="product-name">2x Mastery</h3>
+                        <div class="product-price">
+                            <span class="robux-icon"></span>450
+                        </div>
+                        <div class="peso-price">₱122.00</div>
+                    </div>
+
+                    <div class="product-card">
+                        <span class="product-icon icon-money"></span>
+                        <h3 class="product-name">2x Money</h3>
+                        <div class="product-price">
+                            <span class="robux-icon"></span>450
+                        </div>
+                        <div class="peso-price">₱122.00</div>
+                    </div>
+
+                    <div class="product-card">
+                        <span class="product-icon icon-fruit-notifier"></span>
+                        <h3 class="product-name">Fruit Notifier</h3>
+                        <div class="product-price">
+                            <span class="robux-icon"></span>2700
+                        </div>
+                        <div class="peso-price">₱729.00</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="game-category">
+                <h2 class="game-title">
+                    <img src="images/joystick.png" alt="Blox Fruits" class="game-title-logo">
+                    More Games
+                </h2>
+                <div class="coming-soon">
+                    <h3>More Games Coming Soon!</h3>
+                    <p>Stay tuned for exciting new game passes from other popular games</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Robux Packages Section -->
+        <section class="section hidden" id="robux">
+            <div class="section-header">
+                <h1 class="section-title">Robux Packages</h1>
+                <p class="section-subtitle">Get more Robux to enhance your Roblox experience</p>
+            </div>
+            
+            <div class="product-grid">
+                <div class="product-card featured">
+                    <div class="featured-badge">Popular</div>
+                    <div class="robux-package">
+                        <span class="package-icon"></span>
+                        <div class="robux-amount">500</div>
+                        <div class="gamepass-price">GP: 715</div>
+                        <div class="peso-amount">₱200.00</div>
+                    </div>
+                </div>
+
+                <div class="product-card featured">
+                    <div class="featured-badge">Popular</div>
+                    <div class="robux-package">
+                        <span class="package-icon"></span>
+                        <div class="robux-amount">1000</div>
+                        <div class="gamepass-price">GP: 1430</div>
+                        <div class="peso-amount">₱400.00</div>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="robux-package">
+                        <span class="package-icon"></span>
+                        <div class="robux-amount">100</div>
+                        <div class="gamepass-price">GP: 143</div>
+                        <div class="peso-amount">₱40.00</div>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="robux-package">
+                        <span class="package-icon"></span>
+                        <div class="robux-amount">200</div>
+                        <div class="gamepass-price">GP: 286</div>
+                        <div class="peso-amount">₱80.00</div>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="robux-package">
+                        <span class="package-icon"></span>
+                        <div class="robux-amount">300</div>
+                        <div class="gamepass-price">GP: 429</div>
+                        <div class="peso-amount">₱120.00</div>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="robux-package">
+                        <span class="package-icon"></span>
+                        <div class="robux-amount">400</div>
+                        <div class="gamepass-price">GP: 572</div>
+                        <div class="peso-amount">₱160.00</div>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="robux-package">
+                        <span class="package-icon"></span>
+                        <div class="robux-amount">600</div>
+                        <div class="gamepass-price">GP: 858</div>
+                        <div class="peso-amount">₱240.00</div>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="robux-package">
+                        <span class="package-icon"></span>
+                        <div class="robux-amount">700</div>
+                        <div class="gamepass-price">GP: 1001</div>
+                        <div class="peso-amount">₱280.00</div>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="robux-package">
+                        <span class="package-icon"></span>
+                        <div class="robux-amount">800</div>
+                        <div class="gamepass-price">GP: 1144</div>
+                        <div class="peso-amount">₱320.00</div>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="robux-package">
+                        <span class="package-icon"></span>
+                        <div class="robux-amount">900</div>
+                        <div class="gamepass-price">GP: 1287</div>
+                        <div class="peso-amount">₱360.00</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section class="section hidden" id="about">
+            <div class="section-header">
+                <h1 class="section-title">About KinStore</h1>
+                <p class="section-subtitle">Your trusted source for Roblox gamepasses and Robux</p>
+            </div>
+            
+            <div class="about-content">
+                <div class="about-card">
+                    <h2>Who We Are</h2>
+                    <p>KinStore offers affordable Robux and gamepasses. We provide competitive prices and reliable service to enhance your gaming experience.</p>
+                </div>
+
+                <div class="about-card">
+                    <h2>Payment Methods</h2>
+                    <ul>
+                        <li>GCash</li>
+                        <li>PayMaya</li>
+                        <li>GoTyme</li>
+                    </ul>
+                </div>
+
+                <div class="about-card">
+                    <h2>Our Services</h2>
+                    <ul>
+                        <li>Blox Fruits Gamepasses</li>
+                        <li>Permanent Fruit Access</li>
+                        <li>Robux Packages</li>
+                        <li>Fast Delivery</li>
+                        <li>24/7 Support</li>
+                    </ul>
+                </div>
+
+                <div class="about-card">
+                    <h2>Why Choose Us</h2>
+                    <ul>
+                        <li>Competitive Prices</li>
+                        <li>Secure Transactions</li>
+                        <li>Instant Delivery</li>
+                    </ul>
+                </div>
+
+                <div class="about-card">
+                    <h2>Contact Us</h2>
+                    <p>For inquiries and support:</p>
+                    <ul>
+                        <li>Facebook: Clyde Thomas</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal" id="purchaseModal">
+        <div class="modal-content">
+            <span class="close-modal">×</span>
+            <div class="modal-header">
+                <h2 class="modal-title">Want to Purchase?</h2>
+            </div>
+            <div class="product-details">
+                <span class="modal-product-icon"></span>
+                <h3 class="modal-product-name"></h3>
+                <div class="modal-product-price"></div>
+            </div>
+            <div class="contact-info">
+                <p>Direct Message me on Facebook</p>
+                <a href="https://facebook.com/profile" target="_blank" class="facebook-link">
+                    <span class="facebook-icon">👤</span>
+                    Clyde Thomas
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>&copy; 2025 KinStore</p>
+    </footer>
+
+</body>
+</html>
