@@ -236,6 +236,10 @@ document.addEventListener('DOMContentLoaded', function() {
     const modal = document.getElementById('purchaseModal');
     const closeModal = document.querySelector('.close-modal');
 
+    // Ensure modal is hidden on page load
+    modal.style.display = 'none';
+    modal.classList.remove('show');
+
     document.querySelectorAll('.product-card').forEach(card => {
         card.addEventListener('click', function() {
             const isRobuxPackage = this.querySelector('.robux-package') !== null;
@@ -261,26 +265,26 @@ document.addEventListener('DOMContentLoaded', function() {
                 modal.querySelector('.modal-product-icon').className = 'modal-product-icon ' + productIcon;
             }
 
+            // Show modal
             modal.style.display = 'flex';
-            modal.classList.add('show');
+            setTimeout(() => {
+                modal.classList.add('show');
+            }, 10);
         });
     });
 
-    closeModal.addEventListener('click', () => {
-        modal.classList.add('hiding');
+    function hideModal() {
+        modal.classList.remove('show');
         setTimeout(() => {
-            modal.classList.remove('show', 'hiding');
             modal.style.display = 'none';
-        }, 500);
-    });
+        }, 300);
+    }
+
+    closeModal.addEventListener('click', hideModal);
 
     window.addEventListener('click', (e) => {
         if (e.target === modal) {
-            modal.classList.add('hiding');
-            setTimeout(() => {
-                modal.classList.remove('show', 'hiding');
-                modal.style.display = 'none';
-            }, 500);
+            hideModal();
         }
     });
 
