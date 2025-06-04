@@ -282,11 +282,12 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     function hideModal() {
-        modal.classList.remove('show');
+        modal.classList.add('hiding');
         setTimeout(() => {
+            modal.classList.remove('show', 'hiding');
             modal.style.display = 'none';
             modal.style.visibility = 'hidden';
-        }, 300);
+        }, 200); // Match the animation duration
     }
 
     closeModal.addEventListener('click', (e) => {
