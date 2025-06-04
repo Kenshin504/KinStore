@@ -215,6 +215,19 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Populate Robux packages
     const robuxGrid = document.querySelector('#robux .product-grid');
+    
+    // Add title section for Robux packages
+    const robuxTitle = document.createElement('div');
+    robuxTitle.className = 'game-category';
+    robuxTitle.innerHTML = `
+        <h2 class="game-title">
+            <img src="images/robux-white.png" alt="Covered Tax" class="game-title-logo">
+            Covered Tax
+        </h2>
+    `;
+    document.querySelector('#robux').insertBefore(robuxTitle, robuxGrid);
+
+    // Populate packages
     STORE_DATA.robuxPackages.forEach(package => {
         robuxGrid.appendChild(createProductCard(package, true));
     });

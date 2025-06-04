@@ -161,17 +161,33 @@ body {
 
 .game-category {
     margin-bottom: 3rem;
+    text-align: left;
+}
+
+/* Special styling for Robux section */
+#robux .game-category {
+    margin-bottom: 0px;
 }
 
 .game-title {
     font-size: 1.8rem;
     color: var(--text-primary);
     margin-bottom: 1.5rem;
-    padding-bottom: 0.5rem;
-    border-bottom: 2px solid var(--accent-color);
-    display: flex;
+    display: inline-flex;
     align-items: center;
     gap: 1rem;
+    position: relative;
+    padding-bottom: 0.5rem;
+}
+
+.game-title::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: var(--accent-color);
 }
 
 .game-title-logo {
@@ -236,6 +252,11 @@ body {
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
+    transition: transform 0.3s ease;
+}
+
+.product-card:hover .product-icon {
+    transform: rotate(-8deg) scale(1.1);
 }
 
 /* Add specific icon classes */
@@ -679,6 +700,11 @@ body {
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
+    transition: transform 0.3s ease;
+}
+
+.product-card:hover .package-icon {
+    transform: rotate(-8deg) scale(1.1);
 }
 
 [data-theme="dark"] .package-icon {
