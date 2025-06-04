@@ -1,14 +1,14 @@
 // Theme toggle functionality
 function toggleTheme() {
-    const body = document.body;
+    const html = document.documentElement;
     const themeToggle = document.querySelector('.theme-toggle');
     
-    if (body.getAttribute('data-theme') === 'dark') {
-        body.removeAttribute('data-theme');
+    if (html.getAttribute('data-theme') === 'dark') {
+        html.removeAttribute('data-theme');
         themeToggle.textContent = '🌙';
         localStorage.setItem('theme', 'light');
     } else {
-        body.setAttribute('data-theme', 'dark');
+        html.setAttribute('data-theme', 'dark');
         themeToggle.textContent = '☀️';
         localStorage.setItem('theme', 'dark');
     }
@@ -28,14 +28,17 @@ function toggleMenu() {
 // Scroll Animation
 function handleScrollAnimation() {
     const sections = document.querySelectorAll('.section, .product-card');
+    let prevYPosition = window.pageYOffset;
     
     const observer = new IntersectionObserver((entries) => {
+        const currentYPosition = window.pageYOffset;
+        const isScrollingUp = currentYPosition < prevYPosition;
+        prevYPosition = currentYPosition;
+
         entries.forEach(entry => {
-            // Add is-visible class when element enters viewport
             if (entry.isIntersecting) {
                 entry.target.classList.add('is-visible');
-            } else {
-                // Remove is-visible class when element leaves viewport
+            } else if (isScrollingUp) {
                 entry.target.classList.remove('is-visible');
             }
         });
@@ -51,71 +54,177 @@ function handleScrollAnimation() {
 
 // Initialize all functionality when DOM is loaded
 document.addEventListener('DOMContentLoaded', function() {
-    // Load saved theme
-    const savedTheme = localStorage.getItem('theme');
+    // Theme toggle functionality
+    const themeToggle = document.querySelector('.theme-toggle');
+    const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
+    
+    // Initialize theme
+    const savedTheme = localStorage.getItem('theme') || (prefersDarkScheme.matches ? 'dark' : 'light');
     if (savedTheme === 'dark') {
-        document.body.setAttribute('data-theme', 'dark');
-        document.querySelector('.theme-toggle').textContent = '☀️';
+        document.documentElement.setAttribute('data-theme', 'dark');
+        themeToggle.textContent = '☀️';
+    } else {
+        document.documentElement.removeAttribute('data-theme');
+        themeToggle.textContent = '🌙';
     }
 
-    // Close menu when clicking outside
-    document.addEventListener('click', function(e) {
-        const hamburger = document.querySelector('.hamburger');
-        const navMenu = document.querySelector('.nav-menu');
-        
-        if (!hamburger.contains(e.target) && !navMenu.contains(e.target) && navMenu.classList.contains('active')) {
-            hamburger.classList.remove('active');
-            navMenu.classList.remove('active');
-            document.body.classList.remove('menu-open');
-        }
-    });
+    // Add click event listener for theme toggle
+    themeToggle.addEventListener('click', toggleTheme);
 
-    // Close menu when clicking on a nav link
-    document.querySelectorAll('.nav-link').forEach(link => {
-        link.addEventListener('click', () => {
-            const hamburger = document.querySelector('.hamburger');
-            const navMenu = document.querySelector('.nav-menu');
-            
-            hamburger.classList.remove('active');
-            navMenu.classList.remove('active');
-            document.body.classList.remove('menu-open');
-        });
-    });
+    // Add click event listener for hamburger menu
+    const hamburger = document.querySelector('.hamburger');
+    hamburger.addEventListener('click', toggleMenu);
 
     // Navigation functionality
-    document.querySelectorAll('.nav-link').forEach(link => {
-        link.addEventListener('click', function(e) {
-            e.preventDefault();
-            
-            // Remove active class from all links
-            document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
-            this.classList.add('active');
-            
-            // Hide all sections
-            document.querySelectorAll('.section').forEach(section => {
-                section.classList.add('hidden');
-            });
-            
-            // Show selected section
-            const sectionId = this.getAttribute('data-section');
-            document.getElementById(sectionId).classList.remove('hidden');
+    const sections = document.querySelectorAll('.section');
+    const navLinks = document.querySelectorAll('.nav-link');
+    const navMenu = document.querySelector('.nav-menu');
 
-            // Close mobile menu if open
-            const hamburger = document.querySelector('.hamburger');
-            const navMenu = document.querySelector('.nav-menu');
-            if (navMenu.classList.contains('active')) {
-                hamburger.classList.remove('active');
-                navMenu.classList.remove('active');
+    function setActiveSection(sectionId) {
+        sections.forEach(section => {
+            section.classList.add('hidden');
+            if (section.id === sectionId) {
+                section.classList.remove('hidden');
             }
+        });
+
+        navLinks.forEach(link => {
+            link.classList.remove('active');
+            if (link.getAttribute('data-section') === sectionId) {
+                link.classList.add('active');
+            }
+        });
+
+        // Close mobile menu after navigation
+        navMenu.classList.remove('active');
+        hamburger.classList.remove('active');
+        document.body.classList.remove('menu-open');
+    }
+
+    navLinks.forEach(link => {
+        link.addEventListener('click', (e) => {
+            e.preventDefault();
+            const sectionId = link.getAttribute('data-section');
+            setActiveSection(sectionId);
         });
     });
 
-    // Product card click functionality
+    // Generate product cards
+    function createProductCard(product, isRobuxPackage = false) {
+        const card = document.createElement('div');
+        card.className = 'product-card' + (product.featured ? ' featured' : '');
+
+        if (product.featured) {
+            const badge = document.createElement('div');
+            badge.className = 'featured-badge';
+            badge.textContent = 'Popular';
+            card.appendChild(badge);
+        }
+
+        if (product.bestValue) {
+            const badge = document.createElement('div');
+            badge.className = 'best-value-badge';
+            badge.textContent = 'Best Value';
+            card.appendChild(badge);
+        }
+
+        if (isRobuxPackage) {
+            const package = document.createElement('div');
+            package.className = 'robux-package';
+            package.innerHTML = `
+                <span class="package-icon"></span>
+                <div class="robux-amount">${product.amount}</div>
+                <div class="gamepass-price">GP: ${product.gamepassPrice}</div>
+                <div class="peso-amount">₱${product.pesoPrice.toFixed(2)}</div>
+            `;
+            card.appendChild(package);
+        } else {
+            const icon = document.createElement('span');
+            icon.className = `product-icon icon-${product.icon}`;
+            card.appendChild(icon);
+
+            const name = document.createElement('h3');
+            name.className = 'product-name';
+            name.textContent = product.name;
+            card.appendChild(name);
+
+            const price = document.createElement('div');
+            price.className = 'product-price';
+            price.innerHTML = `<span class="robux-icon"></span>${product.price}`;
+            card.appendChild(price);
+
+            const pesoPrice = document.createElement('div');
+            pesoPrice.className = 'peso-price';
+            pesoPrice.textContent = `₱${product.pesoPrice.toFixed(2)}`;
+            card.appendChild(pesoPrice);
+        }
+
+        return card;
+    }
+
+    function generateGameSection(gameData) {
+        const section = document.createElement('div');
+        section.className = 'game-category';
+        
+        section.innerHTML = `
+            <h2 class="game-title">
+                <img src="images/${gameData.logo}" alt="${gameData.name}" class="game-title-logo">
+                ${gameData.name}
+            </h2>
+        `;
+
+        const grid = document.createElement('div');
+        grid.className = 'product-grid';
+
+        gameData.products.forEach(product => {
+            grid.appendChild(createProductCard(product));
+        });
+
+        section.appendChild(grid);
+        return section;
+    }
+
+    // Populate game sections
+    const gamepassesSection = document.getElementById('gamepasses');
+    
+    // First remove the existing More Games section if it exists
+    const existingMoreGames = gamepassesSection.querySelector('.game-category:last-child');
+    if (existingMoreGames) {
+        existingMoreGames.remove();
+    }
+
+    // Add all game sections
+    STORE_DATA.games.forEach(game => {
+        gamepassesSection.appendChild(generateGameSection(game));
+    });
+
+    // Add More Games section at the end
+    const moreGamesSection = document.createElement('div');
+    moreGamesSection.className = 'game-category';
+    moreGamesSection.innerHTML = `
+        <h2 class="game-title">
+            <img src="images/joystick.png" alt="More Games" class="game-title-logo">
+            More Games
+        </h2>
+        <div class="coming-soon">
+            <h3>More Games Coming Soon!</h3>
+            <p>Stay tuned for exciting new game passes from other popular games</p>
+        </div>
+    `;
+    gamepassesSection.appendChild(moreGamesSection);
+
+    // Populate Robux packages
+    const robuxGrid = document.querySelector('#robux .product-grid');
+    STORE_DATA.robuxPackages.forEach(package => {
+        robuxGrid.appendChild(createProductCard(package, true));
+    });
+
+    // Modal functionality
+    const modal = document.getElementById('purchaseModal');
+    const closeModal = document.querySelector('.close-modal');
+
     document.querySelectorAll('.product-card').forEach(card => {
         card.addEventListener('click', function() {
-            const modal = document.getElementById('purchaseModal');
-            
-            // Check if it's a Robux package or regular product
             const isRobuxPackage = this.querySelector('.robux-package') !== null;
             
             if (isRobuxPackage) {
@@ -123,9 +232,9 @@ document.addEventListener('DOMContentLoaded', function() {
                 const gamepassPrice = this.querySelector('.gamepass-price').textContent;
                 const pesoAmount = this.querySelector('.peso-amount').textContent;
                 
-                // Update modal content for Robux package
                 modal.querySelector('.modal-product-name').textContent = `${robuxAmount} Robux`;
-                modal.querySelector('.modal-product-price').innerHTML = `${pesoAmount} (<span class="robux-icon"></span>${gamepassPrice.replace('GP: ', '')})`;
+                modal.querySelector('.modal-product-price').innerHTML = 
+                    `${pesoAmount} (<span class="robux-icon"></span>${gamepassPrice.replace('GP: ', '')})`;
                 modal.querySelector('.modal-product-icon').className = 'modal-product-icon package-icon';
             } else {
                 const productName = this.querySelector('.product-name').textContent;
@@ -133,56 +242,53 @@ document.addEventListener('DOMContentLoaded', function() {
                 const pesoPrice = this.querySelector('.peso-price').textContent;
                 const productIcon = this.querySelector('.product-icon').className;
 
-                // Update modal content for regular product
                 modal.querySelector('.modal-product-name').textContent = productName;
-                modal.querySelector('.modal-product-price').innerHTML = `<span class="robux-icon"></span>${productPrice} (${pesoPrice})`;
+                modal.querySelector('.modal-product-price').innerHTML = 
+                    `<span class="robux-icon"></span>${productPrice} (${pesoPrice})`;
                 modal.querySelector('.modal-product-icon').className = 'modal-product-icon ' + productIcon;
             }
 
-            // Reset modal state and show it
             modal.style.display = 'flex';
-            modal.classList.remove('hiding');
-            // Use requestAnimationFrame to ensure display: flex is applied before adding show class
-            requestAnimationFrame(() => {
-                modal.classList.add('show');
-                document.body.style.overflow = 'hidden'; // Prevent scrolling
-            });
+            modal.classList.add('show');
         });
     });
 
-    // Modal close functionality with animation
-    const modal = document.getElementById('purchaseModal');
-    const closeModal = document.querySelector('.close-modal');
-
-    function hideModal() {
+    closeModal.addEventListener('click', () => {
         modal.classList.add('hiding');
-        document.body.style.overflow = ''; // Restore scrolling
-        
-        // Wait for the animation to complete
-        const handleAnimationEnd = () => {
+        setTimeout(() => {
             modal.classList.remove('show', 'hiding');
             modal.style.display = 'none';
-            modal.removeEventListener('animationend', handleAnimationEnd);
-        };
+        }, 500);
+    });
 
-        modal.addEventListener('animationend', handleAnimationEnd, { once: true });
-    }
-
-    closeModal.addEventListener('click', hideModal);
-
-    // Close modal when clicking outside
-    modal.addEventListener('click', (e) => {
+    window.addEventListener('click', (e) => {
         if (e.target === modal) {
-            hideModal();
+            modal.classList.add('hiding');
+            setTimeout(() => {
+                modal.classList.remove('show', 'hiding');
+                modal.style.display = 'none';
+            }, 500);
         }
     });
 
-    // Close modal with Escape key
-    document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && modal.classList.contains('show')) {
-            hideModal();
-        }
-    });
+    // Scroll animation
+    const observerOptions = {
+        root: null,
+        rootMargin: '0px',
+        threshold: 0.1
+    };
 
-    handleScrollAnimation();
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('is-visible');
+            } else {
+                entry.target.classList.remove('is-visible');
+            }
+        });
+    }, observerOptions);
+
+    document.querySelectorAll('.section, .product-card').forEach(element => {
+        observer.observe(element);
+    });
 });
