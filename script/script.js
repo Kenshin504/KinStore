@@ -236,12 +236,19 @@ document.addEventListener('DOMContentLoaded', function() {
     const modal = document.getElementById('purchaseModal');
     const closeModal = document.querySelector('.close-modal');
 
-    // Ensure modal is hidden on page load
-    modal.style.display = 'none';
-    modal.classList.remove('show');
+    // Ensure modal is properly hidden on page load
+    function initializeModal() {
+        modal.style.display = 'none';
+        modal.classList.remove('show');
+        modal.style.visibility = 'hidden';
+    }
+
+    // Initialize modal on page load
+    initializeModal();
 
     document.querySelectorAll('.product-card').forEach(card => {
-        card.addEventListener('click', function() {
+        card.addEventListener('click', function(e) {
+            e.stopPropagation(); // Prevent event bubbling
             const isRobuxPackage = this.querySelector('.robux-package') !== null;
             
             if (isRobuxPackage) {
@@ -266,10 +273,11 @@ document.addEventListener('DOMContentLoaded', function() {
             }
 
             // Show modal
+            modal.style.visibility = 'visible';
             modal.style.display = 'flex';
-            setTimeout(() => {
+            requestAnimationFrame(() => {
                 modal.classList.add('show');
-            }, 10);
+            });
         });
     });
 
@@ -277,15 +285,24 @@ document.addEventListener('DOMContentLoaded', function() {
         modal.classList.remove('show');
         setTimeout(() => {
             modal.style.display = 'none';
+            modal.style.visibility = 'hidden';
         }, 300);
     }
 
-    closeModal.addEventListener('click', hideModal);
+    closeModal.addEventListener('click', (e) => {
+        e.stopPropagation(); // Prevent event bubbling
+        hideModal();
+    });
 
-    window.addEventListener('click', (e) => {
+    modal.addEventListener('click', (e) => {
         if (e.target === modal) {
             hideModal();
         }
+    });
+
+    // Prevent clicks inside modal from closing it
+    modal.querySelector('.modal-content').addEventListener('click', (e) => {
+        e.stopPropagation();
     });
 
     // Scroll animation
