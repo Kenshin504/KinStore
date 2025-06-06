@@ -365,54 +365,54 @@ const STORE_DATA = {
         {
             amount: 500,
             gamepassPrice: 715,
-            pesoPrice: 190.00,
+            pesoPrice: 200.00,
             featured: true
         },
         {
             amount: 1000,
             gamepassPrice: 1430,
-            pesoPrice: 380.00,
+            pesoPrice: 385.00,
             featured: true
         },
         {
             amount: 100,
             gamepassPrice: 143,
-            pesoPrice: 40.00
+            pesoPrice: 50.00
         },
         {
             amount: 200,
             gamepassPrice: 286,
-            pesoPrice: 76.00
+            pesoPrice: 90.00
         },
         {
             amount: 300,
             gamepassPrice: 429,
-            pesoPrice: 114.00
+            pesoPrice: 125.00
         },
         {
             amount: 400,
             gamepassPrice: 572,
-            pesoPrice: 152.00
+            pesoPrice: 160.00
         },
         {
             amount: 600,
             gamepassPrice: 858,
-            pesoPrice: 228.00
+            pesoPrice: 235.00
         },
         {
             amount: 700,
             gamepassPrice: 1001,
-            pesoPrice: 266.00
+            pesoPrice: 275.00
         },
         {
             amount: 800,
             gamepassPrice: 1144,
-            pesoPrice: 304.00
+            pesoPrice: 315.00
         },
         {
             amount: 900,
             gamepassPrice: 1287,
-            pesoPrice: 342.00
+            pesoPrice: 350.00
         }
     ]
 }; 
